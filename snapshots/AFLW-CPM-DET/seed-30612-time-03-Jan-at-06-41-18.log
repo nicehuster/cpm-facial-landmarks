@@ -1,0 +1,221 @@
+Main Function with logger : Logger(dir=snapshots/AFLW-CPM-DET)
+Arguments : -------------------------------
+arg_flip         : False
+batch_size       : 8
+crop_height      : 256
+crop_perturb_max : 30
+crop_width       : 256
+data_indicator   : AFLW-19
+error_bar        : None
+eval_ilists      : ['./datasets/AFLW_lists/test.GTB']
+eval_once        : False
+heatmap_type     : gaussian
+model_config     : ./configs/Detector.config
+num_pts          : 19
+opt_config       : ./configs/SGD.config
+pre_crop_expand  : 0.2
+print_freq       : 100
+rand_seed        : 30612
+rotate_max       : 20
+save_path        : ./snapshots/AFLW-CPM-DET
+scale_eval       : 1
+scale_max        : 1.1
+scale_min        : 0.9
+scale_prob       : 1.0
+sigma            : 4
+train_lists      : ['./datasets/AFLW_lists/train.GTB']
+workers          : 8
+Python  version : 3.5.2 (default, Nov 12 2018, 13:43:14)  [GCC 5.4.0 20160609]
+Pillow  version : 5.1.0
+PyTorch version : 0.4.1
+cuDNN   version : 7102
+./configs/Detector.config
+Configure(downsample=8, pooling=[True, True, True], argmax=4, pretrained=[True], arch='cpm_vgg16', stages=3, dilation=[1])
+Real Sigma : 4
+configure : Configure(downsample=8, pooling=[True, True, True], argmax=4, pretrained=[True], arch='cpm_vgg16', stages=3, dilation=[1])
+=> network :
+ VGG16_base(
+  (features): Sequential(
+    (0): Conv2d(3, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (1): ReLU(inplace)
+    (2): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (3): ReLU(inplace)
+    (4): MaxPool2d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)
+    (5): Conv2d(64, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (6): ReLU(inplace)
+    (7): Conv2d(128, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (8): ReLU(inplace)
+    (9): MaxPool2d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)
+    (10): Conv2d(128, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (11): ReLU(inplace)
+    (12): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (13): ReLU(inplace)
+    (14): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (15): ReLU(inplace)
+    (16): MaxPool2d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)
+    (17): Conv2d(256, 512, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (18): ReLU(inplace)
+    (19): Conv2d(512, 512, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (20): ReLU(inplace)
+    (21): Conv2d(512, 512, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (22): ReLU(inplace)
+  )
+  (CPM_feature): Sequential(
+    (0): Conv2d(512, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (1): ReLU(inplace)
+    (2): Conv2d(256, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (3): ReLU(inplace)
+  )
+  (stages): ModuleList(
+    (0): Sequential(
+      (0): Conv2d(128, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+      (1): ReLU(inplace)
+      (2): Conv2d(128, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+      (3): ReLU(inplace)
+      (4): Conv2d(128, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+      (5): ReLU(inplace)
+      (6): Conv2d(128, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+      (7): ReLU(inplace)
+      (8): Conv2d(128, 512, kernel_size=(1, 1), stride=(1, 1))
+      (9): ReLU(inplace)
+      (10): Conv2d(512, 20, kernel_size=(1, 1), stride=(1, 1))
+    )
+    (1): Sequential(
+      (0): Conv2d(148, 128, kernel_size=(7, 7), stride=(1, 1), padding=(3, 3))
+      (1): ReLU(inplace)
+      (2): Conv2d(128, 128, kernel_size=(7, 7), stride=(1, 1), padding=(3, 3))
+      (3): ReLU(inplace)
+      (4): Conv2d(128, 128, kernel_size=(7, 7), stride=(1, 1), padding=(3, 3))
+      (5): ReLU(inplace)
+      (6): Conv2d(128, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+      (7): ReLU(inplace)
+      (8): Conv2d(128, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+      (9): ReLU(inplace)
+      (10): Conv2d(128, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+      (11): ReLU(inplace)
+      (12): Conv2d(128, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+      (13): ReLU(inplace)
+      (14): Conv2d(128, 128, kernel_size=(1, 1), stride=(1, 1))
+      (15): ReLU(inplace)
+      (16): Conv2d(128, 20, kernel_size=(1, 1), stride=(1, 1))
+    )
+    (2): Sequential(
+      (0): Conv2d(148, 128, kernel_size=(7, 7), stride=(1, 1), padding=(3, 3))
+      (1): ReLU(inplace)
+      (2): Conv2d(128, 128, kernel_size=(7, 7), stride=(1, 1), padding=(3, 3))
+      (3): ReLU(inplace)
+      (4): Conv2d(128, 128, kernel_size=(7, 7), stride=(1, 1), padding=(3, 3))
+      (5): ReLU(inplace)
+      (6): Conv2d(128, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+      (7): ReLU(inplace)
+      (8): Conv2d(128, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+      (9): ReLU(inplace)
+      (10): Conv2d(128, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+      (11): ReLU(inplace)
+      (12): Conv2d(128, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+      (13): ReLU(inplace)
+      (14): Conv2d(128, 128, kernel_size=(1, 1), stride=(1, 1))
+      (15): ReLU(inplace)
+      (16): Conv2d(128, 20, kernel_size=(1, 1), stride=(1, 1))
+    )
+  )
+)
+Training-data : GeneralDataset(point-num=19, sigma=4, heatmap_type=gaussian, length=20000, dataset=AFLW-19)
+The [ 0/ 1]-th testing-data [image] = GeneralDataset(point-num=19, sigma=4, heatmap_type=gaussian, length=4386, dataset=AFLW-19)
+arguments : Namespace(arg_flip=False, batch_size=8, crop_height=256, crop_perturb_max=30, crop_width=256, data_indicator='AFLW-19', error_bar=None, eval_ilists=['./datasets/AFLW_lists/test.GTB'], eval_once=False, heatmap_type='gaussian', model_config='./configs/Detector.config', num_pts=19, opt_config='./configs/SGD.config', pre_crop_expand=0.2, print_freq=100, rand_seed=30612, rotate_max=20, save_path='./snapshots/AFLW-CPM-DET', scale_eval=1, scale_max=1.1, scale_min=0.9, scale_prob=1.0, sigma=4, train_lists=['./datasets/AFLW_lists/train.GTB'], workers=8)
+./configs/SGD.config
+Configure(Decay=0.0005, optimizer='sgd', momentum=0.9, gamma=0.5, nesterov=True, schedule=[50], LR=5e-05, epochs=50, loss_norm=True, lossnorm=True, criterion='MSE-none')
+Optimizer : SGD (
+Parameter Group 0
+    dampening: 0
+    initial_lr: 5e-05
+    lr: 5e-05
+    momentum: 0.9
+    nesterov: True
+    weight_decay: 0.0005
+
+Parameter Group 1
+    dampening: 0
+    initial_lr: 0.0001
+    lr: 0.0001
+    momentum: 0.9
+    nesterov: True
+    weight_decay: 0
+
+Parameter Group 2
+    dampening: 0
+    initial_lr: 5e-05
+    lr: 5e-05
+    momentum: 0.9
+    nesterov: True
+    weight_decay: 0.0005
+
+Parameter Group 3
+    dampening: 0
+    initial_lr: 0.0001
+    lr: 0.0001
+    momentum: 0.9
+    nesterov: True
+    weight_decay: 0
+
+Parameter Group 4
+    dampening: 0
+    initial_lr: 0.0002
+    lr: 0.0002
+    momentum: 0.9
+    nesterov: True
+    weight_decay: 0.0005
+
+Parameter Group 5
+    dampening: 0
+    initial_lr: 0.0004
+    lr: 0.0004
+    momentum: 0.9
+    nesterov: True
+    weight_decay: 0
+
+Parameter Group 6
+    dampening: 0
+    initial_lr: 0.0002
+    lr: 0.0002
+    momentum: 0.9
+    nesterov: True
+    weight_decay: 0.0005
+
+Parameter Group 7
+    dampening: 0
+    initial_lr: 0.0004
+    lr: 0.0004
+    momentum: 0.9
+    nesterov: True
+    weight_decay: 0
+
+Parameter Group 8
+    dampening: 0
+    initial_lr: 0.0002
+    lr: 0.0002
+    momentum: 0.9
+    nesterov: True
+    weight_decay: 0.0005
+
+Parameter Group 9
+    dampening: 0
+    initial_lr: 0.0004
+    lr: 0.0004
+    momentum: 0.9
+    nesterov: True
+    weight_decay: 0
+), MSE Loss with size-average=False
+criterion : MSELoss()
+=> do not find the last-info file : snapshots/AFLW-CPM-DET/last-info.pth
+
+==>>[2019-01-03 06:41:30] [epoch-000-050], [[Time Left: 00:00:00]], LR : [0.00005 ~ 0.00040], Config : Configure(Decay=0.0005, optimizer='sgd', momentum=0.9, gamma=0.5, nesterov=True, schedule=[50], LR=5e-05, epochs=50, loss_norm=True, lossnorm=True, criterion='MSE-none')
+ -->>[Train]: [epoch-000-050][000/2500] Time 20.37 (20.37) Data 0.93 (0.93) Forward 10.77 (10.77) Loss 1505.1759 (1505.1759)  [Time Left: 14:08:31] : L1=501.7305 : L2=501.7239 : L3=501.7216 In=[8, 3, 256, 256] Tar=[8, 20, 32, 32] Vis-PTS : 13 (13.9)
+ -->>[Train]: [epoch-000-050][100/2500] Time 0.15 (0.36) Data 0.00 (0.01) Forward 0.06 (0.17) Loss 36.5119 (55.8031)  [Time Left: 00:14:12] : L1=12.1705 : L2=12.1707 : L3=12.1707 In=[8, 3, 256, 256] Tar=[8, 20, 32, 32] Vis-PTS : 16 (15.0)
+ -->>[Train]: [epoch-000-050][200/2500] Time 0.16 (0.26) Data 0.00 (0.01) Forward 0.06 (0.12) Loss 30.2932 (45.3141)  [Time Left: 00:09:46] : L1=10.0976 : L2=10.0978 : L3=10.0978 In=[8, 3, 256, 256] Tar=[8, 20, 32, 32] Vis-PTS : 13 (15.1)
+ -->>[Train]: [epoch-000-050][300/2500] Time 0.16 (0.23) Data 0.00 (0.00) Forward 0.06 (0.10) Loss 34.3311 (41.7789)  [Time Left: 00:08:14] : L1=11.4435 : L2=11.4438 : L3=11.4438 In=[8, 3, 256, 256] Tar=[8, 20, 32, 32] Vis-PTS : 15 (15.1)
+ -->>[Train]: [epoch-000-050][400/2500] Time 0.17 (0.21) Data 0.00 (0.00) Forward 0.07 (0.09) Loss 38.5666 (39.9097)  [Time Left: 00:07:21] : L1=12.8554 : L2=12.8556 : L3=12.8556 In=[8, 3, 256, 256] Tar=[8, 20, 32, 32] Vis-PTS : 16 (15.1)
+ -->>[Train]: [epoch-000-050][500/2500] Time 0.17 (0.20) Data 0.00 (0.00) Forward 0.07 (0.09) Loss 34.4751 (38.7964)  [Time Left: 00:06:42] : L1=11.4915 : L2=11.4918 : L3=11.4918 In=[8, 3, 256, 256] Tar=[8, 20, 32, 32] Vis-PTS : 15 (15.1)
+ -->>[Train]: [epoch-000-050][600/2500] Time 0.17 (0.20) Data 0.00 (0.00) Forward 0.07 (0.08) Loss 36.4328 (38.1093)  [Time Left: 00:06:10] : L1=12.1439 : L2=12.1445 : L3=12.1445 In=[8, 3, 256, 256] Tar=[8, 20, 32, 32] Vis-PTS : 16 (15.1)
+ -->>[Train]: [epoch-000-050][700/2500] Time 0.16 (0.19) Data 0.00 (0.00) Forward 0.06 (0.08) Loss 38.3899 (37.5606)  [Time Left: 00:05:43] : L1=12.7961 : L2=12.7969 : L3=12.7969 In=[8, 3, 256, 256] Tar=[8, 20, 32, 32] Vis-PTS : 16 (15.1)
+ -->>[Train]: [epoch-000-050][800/2500] Time 0.16 (0.19) Data 0.00 (0.00) Forward 0.06 (0.08) Loss 33.9435 (37.1399)  [Time Left: 00:05:19] : L1=11.3140 : L2=11.3147 : L3=11.3147 In=[8, 3, 256, 256] Tar=[8, 20, 32, 32] Vis-PTS : 15 (15.0)
