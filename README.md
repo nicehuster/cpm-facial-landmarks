@@ -102,17 +102,24 @@ use follow script to generate the AFLW dataset list file into `./datasets/AFLW_l
 python generate_AFLW.py
 ```
 
-## Train
+## Train and Eval
 set the training parameter in configs/Detector.config ,configs/SGD.config and script/300W-DET.sh
 
 ```
-bash script/300W-DET.sh  #for train 300W
-bash script/AFLW-DET.sh  #for train AFLW
+bash script/300W-DET-TRAIN.sh  #for trainning 300W
+
+bash script/AFLW-DET-TRAIN.sh  #for trainning AFLW
+
+ash script/300W-DET-EVAL.sh  #for evaluating 300W
+
+bash script/AFLW-DET-EVAL.sh  #for evaluating AFLW
 ```
+
 
 ## visualize
 
-Pre-trained model which trained on 300W datasets can be downloaded from here [cpm_vgg16-epoch-049-050.pth --Baiduyun Password: pd7j ](https://pan.baidu.com/s/1CMUDFx0TrZCM2YE03QbSEg)
+Pre-trained model which trained on 300W datasets can be downloaded from here [300W_cpm_vgg16-epoch-049-050.pth --Baiduyun Password: k9c1 ](https://pan.baidu.com/s/1IbeqtyVcErWnQ7ARALv3Lw)
+Pre-trained model which trained on AFLW datasets can be downloaded from here [AFLW_cpm_vgg16-epoch-049-050.pth --Baiduyun Password: pd7j ](https://pan.baidu.com/s/18bMLswPCl9a-_vG9c_7rCA)
 ```
 python ./demo.py --model cpm_vgg16-epoch-049-050.pth --image datasets/images/image_0019.png
 ```

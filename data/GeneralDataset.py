@@ -6,7 +6,7 @@ from .generation import generate_label_map
 from .data_utils import pil_loader
 from .file_utils import load_file_lists,anno_parser
 from .point_meta import Point_Meta
-import torch
+import torch,logging
 import torch.utils.data as data
 
 class GeneralDataset(data.Dataset):
@@ -107,9 +107,16 @@ class GeneralDataset(data.Dataset):
 
   def __getitem__(self, index):
     assert index >= 0 and index < self.length, 'Invalid index : {:}'.format(index)
-    image = pil_loader( self.datas[index] )
-    target = self.labels[index].copy()
-    return self._process_(image, target, index)
+    succ=False
+    while not succ:
+      try:
+        image = pil_loader( self.datas[index] )
+        target = self.labels[index].copy()
+        succ=True
+        return self._process_(image, target, index)
+      except Exception as e:
+        index=np.random.choice(range(0,self.length))
+        logging.warning('image read:: ERROR!! {:})'.format(self.datas[index]))
 
   def _process_(self, image, target, index):
 
