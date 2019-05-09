@@ -118,8 +118,10 @@ bash script/AFLW-DET-EVAL.sh  #for evaluating AFLW
 
 ## visualize
 
-Pre-trained model which trained on 300W datasets can be downloaded from here [300W_cpm_vgg16-epoch-049-050.pth --Baiduyun Password: k9c1 ](https://pan.baidu.com/s/1IbeqtyVcErWnQ7ARALv3Lw)
-Pre-trained model which trained on AFLW datasets can be downloaded from here [AFLW_cpm_vgg16-epoch-049-050.pth --Baiduyun Password: pd7j ](https://pan.baidu.com/s/18bMLswPCl9a-_vG9c_7rCA)
+Pre-trained model which trained on 300W datasets can be downloaded from here [300w_68pts_cpm_vgg16-epoch-049-050.pth](https://pan.baidu.com/s/1Gi6sQmZbUhVhIE9cgHSuNA) --Baiduyun passwd:fe6e     
+
+Pre-trained model which trained on AFLW datasets can be downloaded from here [AFLW_19pts_cpm_vgg16-epoch-049-050.pth](https://pan.baidu.com/s/1alpYSi0ujK-j65I-BcPtgQ) --Baiduyun passwd:sia1      
+
 ```
 python ./demo.py --model cpm_vgg16-epoch-049-050.pth --image datasets/images/image_0019.png
 ```
